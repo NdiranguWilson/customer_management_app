@@ -1,0 +1,32 @@
+<!--
+ *
+ * Cytonn Technologies
+ * @author Ndirangu Wilson <wndirangu@cytonn.com>
+ *
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+    <title>Customer Management App</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.3/angular.js"></script>
+        <script src="./js/app.js"></script>
+  </head>
+    <body ng-app="cmaApp" ng-controller="cmaCtrl as cmaCtrl">
+    <h1>Simple Authentication</h1>
+
+    <input type="text" ng-model="cmaCtrl.username" placeholder="username"><br>
+    <input type="password" ng-model="cmaCtrl.password" placeholder="password"><br>
+    <br>
+
+    <button ng-click="cmaCtrl.register()" ng-hide="cmaCtrl.isAuthed()">Register</button>
+    <button ng-click="cmaCtrl.login()" ng-hide="cmaCtrl.isAuthed()">Login</button>
+    <button ng-click="cmaCtrl.logout()" ng-show="cmaCtrl.isAuthed()">Logout</button>
+
+    <button ng-click="cmaCtrl.getQuote()">get quote</button>
+    <br><br>
+    {{cmaCtrl.message}}
+
+    <br><br><br>
+
+    </body>
+</html>
