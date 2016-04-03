@@ -10,7 +10,7 @@
      request: function(config) {
        var token = auth.getToken();
   if(config.url.indexOf(API) === 0 && token) {
-    config.headers.Authorization = 'Bearer ' ;
+    config.headers.Authorization = 'Bearer ' + token;
   }
        return config;
      },
@@ -19,7 +19,7 @@
    response: function(res) {
      if(res.config.url.indexOf(API) === 0 && res.data.token) {
     auth.saveToken(res.data.token);
-    //$window.location.href= "https://www.cytonn.com"
+    $window.location.href= "http://localhost:3000/#/customers"
   }
   return res;
 },
@@ -65,6 +65,7 @@ function authService($window) {
  //logout
  self.logout = function() {
    $window.localStorage.removeItem('jwtToken');
+   $window.location.href= "http://localhost:3000/#/login"
  }
 }
 
@@ -96,8 +97,8 @@ self.login = function(username, password) {
 
 }
 
-// We won't touch anything in here
-function MainCtrl(user, auth) {
+// Main controller with login,logout,
+function MainCtrl(user, auth,$scope) {
  var self = this;
 
  function handleRequest(res) {
@@ -125,10 +126,61 @@ function MainCtrl(user, auth) {
    return auth.isAuthed ? auth.isAuthed() : false
  }
 
+//Add new customers
+ $scope.customers = [{firstname:'Jon', lastname:'Doe',editable : false}];
+  self.counter = 2;
+
+self.addCustomer = function() {
+  var customer={
+    firstname: self.firstname,
+       lastname: self.lastname,
+       editable : false
+
+  };
+
+$scope.customers.push(customer);
+    self.counter++;
+
+  }
+
+  //remove customer
+  self.removeCustomer=function(index){
+$scope.customers.splice(index, 1);
+self.counter--;
+  }
+  //updating a customer
+  $scope.customerPlaceholder = {}
+self.edit = function(index){
+         $scope.customerPlaceholder = $scope.customers[index];
+         $scope.customerPlaceholder.index = index;
+         $scope.customerPlaceholder.editable = true;
+       }
+//save customers
+self.save = function(index){
+     $scope.customers[index].editable = false;
+
+   }
+
+
+//create orders
+$scope.orders=[];
+
+self.addOrder = function(customer) {
+  var orders={
+    firstname: customer.firstname,
+    lastname: customer.lastname,
+    item: self.item,
+    quantity: self.quantity
+  };
+
+$scope.customers.push(customer);
+    self.counter++;
+
+  }
 
 }
 
-angular.module('cmaApp', [])
+angular.module('cmaApp', ['clientRouting'])
 .factory('authInterceptor', authInterceptor)
 .service('user', userService)
 .service('auth', authService)
