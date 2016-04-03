@@ -39,17 +39,18 @@ function authService($window) {
  //parse JWT
  self.parseJwt = function(token) {
    var base64Url = token.split('.')[1];
+   console.log(base64Url);
    var base64 = base64Url.replace('-', '+').replace('_', '/');
    return JSON.parse($window.atob(base64));
- }
+ };
  //save token
  self.saveToken = function(token) {
    $window.localStorage['jwtToken'] = token;
- }
+ };
  //persist
  self.getToken = function() {
    return $window.localStorage['jwtToken'];
- }
+ };
  //check authentication
  self.isAuthed = function() {
    var token = self.getToken();
@@ -60,13 +61,13 @@ function authService($window) {
      return false;
    }
 
- }
+ };
  console.log("am I Authed" + self.isAuthed());
  //logout
  self.logout = function() {
    $window.localStorage.removeItem('jwtToken');
-   $window.location.href= "http://localhost:3000/#/login"
- }
+   $window.location.href= "http://localhost:3000/#/login";
+ };
 }
 
 function userService($http, API, auth) {
@@ -89,16 +90,16 @@ self.login = function(username, password) {
       username: username,
       password: password
     }).then(function(res){
-      auth.saveToken(res.data.token)
+      auth.saveToken(res.data.token);
       return res;
-    })
+    });
 };
 
 
 }
 
 // Main controller with login,logout,
-function MainCtrl(user, auth,$scope) {
+function MainCtrl(user, auth,$scope,$window) {
  var self = this;
 
  function handleRequest(res) {
@@ -109,22 +110,22 @@ function MainCtrl(user, auth,$scope) {
 
  self.login = function() {
    user.login(self.username, self.password)
-     .then(handleRequest, handleRequest)
- }
+     .then(handleRequest, handleRequest);
+ };
  self.register = function() {
    user.register(self.username, self.password)
-     .then(handleRequest, handleRequest)
- }
+     .then(handleRequest, handleRequest);
+ };
  self.getQuote = function() {
    user.getQuote()
-     .then(handleRequest, handleRequest)
- }
+     .then(handleRequest, handleRequest);
+ };
  self.logout = function() {
    auth.logout && auth.logout()
- }
+ };
  self.isAuthed = function() {
-   return auth.isAuthed ? auth.isAuthed() : false
- }
+   return auth.isAuthed ? auth.isAuthed() : false;
+ };
 
 //Add new customers
  $scope.customers = [{firstname:'Jon', lastname:'Doe',editable : false}];
@@ -164,16 +165,30 @@ self.save = function(index){
 
 //create orders
 $scope.orders=[];
+self.viewOrder=function(index){
+   $window.localStorage['firstname'] = $scope.customers[index].firstname;
+   $window.localStorage['lastname'] = $scope.customers[index].lastname;
+   $window.location.href= "http://localhost:3000/#/orders";
 
-self.addOrder = function(customer) {
-  var orders={
+}
+
+self.getCustomerDetails= function(){
+  customer={"firstname": $window.localStorage['firstname'],
+  "lastname": $window.localStorage['lastname']
+};
+   return customer;
+}
+
+self.addOrder = function() {
+customer=self.getCustomerDetails();
+  var order={
     firstname: customer.firstname,
     lastname: customer.lastname,
     item: self.item,
     quantity: self.quantity
   };
 
-$scope.customers.push(customer);
+$scope.orders.push(order);
     self.counter++;
 
   }
