@@ -2,7 +2,7 @@
  * Cytonn Technologies
  * @author Ndirangu Wilson <wndirangu@cytonn.com>
  */
-var myapp = angular.module('clientRouting', ["ui.router", "countryUpper","Directive"]);
+var myapp = angular.module('clientRouting', ["ui.router", "nameFilter","Directive"]);
 myapp.config(function($stateProvider, $urlRouterProvider) {
 
   // For any unmatched url, send to world
@@ -22,7 +22,7 @@ myapp.config(function($stateProvider, $urlRouterProvider) {
       url: "/orders",
       templateUrl: "./views/orders.html"
     })
-    
+
 
 
 

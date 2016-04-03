@@ -4,7 +4,9 @@
  * @author Ndirangu Wilson <wndirangu@cytonn.com>
  *
 -->
+<p>Type a letter in the input field:</p>
 
+<p><input type="text" ng-model="test"></p>
 <button ng-click="cmaCtrl.logout()" ng-show="cmaCtrl.isAuthed()">Logout</button>
 <table style="width:100%">
   <tr>
@@ -12,7 +14,7 @@
     <th>Lastname</th>
 
   </tr>
-  <tr ng-repeat="customer in customers">
+  <tr ng-repeat="customer in customers | filter:test">
     <td>
       <input type="text" ng-model="customer.name" ng-show="customer.editable">
                <span ng-hide="customer.editable">{{customer.firstname}}</span>

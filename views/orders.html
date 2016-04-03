@@ -6,6 +6,7 @@
 -->
 <h3>Order Management</h3>
 <button ng-click="cmaCtrl.logout()" ng-show="cmaCtrl.isAuthed()">Logout</button>
+<button ng-click="cmaCtrl.views()" > Navigate to customers list</button>
 <table style="width:100%">
   <tr>
     <th>Firstname</th>
@@ -29,7 +30,7 @@
   </tr>
   <tr>
   <td>
-    <input type="text" ng-model="cmaCtrl.quantity" placeholder="quantity" ><br />
+    <input type="number" ng-model="cmaCtrl.quantity" placeholder="quantity" ><br />
 
   </td>
   <td>
@@ -40,6 +41,6 @@
   </tr>
 
 </table>
-<button  class="button" ng-click="cmaCtrl.addOrder()">Add Customer {{cmaCtrl.counter}}</button>
+<button  class="button" ng-click="cmaCtrl.addOrder()">Add order</button>
 
 <div ui-view></div>

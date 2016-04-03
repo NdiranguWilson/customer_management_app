@@ -142,6 +142,8 @@ self.addCustomer = function() {
 $scope.customers.push(customer);
     self.counter++;
 
+self.firstname='';
+self.lastname='';
   }
 
   //remove customer
@@ -165,6 +167,7 @@ self.save = function(index){
 
 //create orders
 $scope.orders=[];
+self.orderCount=0;
 self.viewOrder=function(index){
    $window.localStorage['firstname'] = $scope.customers[index].firstname;
    $window.localStorage['lastname'] = $scope.customers[index].lastname;
@@ -189,8 +192,17 @@ customer=self.getCustomerDetails();
   };
 
 $scope.orders.push(order);
-    self.counter++;
+    self.orderCount++;
 
+  }
+
+  self.removeOrder=function(index){
+    $scope.orders.splice(index, 1);
+    self.orderCount--;
+
+  }
+  self.views= function(){
+    $window.location.href= "http://localhost:3000/#/customers"
   }
 
 }
