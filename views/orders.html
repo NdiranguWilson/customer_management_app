@@ -1,0 +1,45 @@
+<!--
+ *
+ * Cytonn Technologies
+ * @author Ndirangu Wilson <wndirangu@cytonn.com>
+ *
+-->
+<h3>Order Management</h3>
+<button ng-click="cmaCtrl.logout()" ng-show="cmaCtrl.isAuthed()">Logout</button>
+<table style="width:100%">
+  <tr>
+    <th>Firstname</th>
+    <th>Lastname</th>
+    <th>Item</th>
+    <th>Quantity</th>
+
+  </tr>
+  <tr ng-repeat="order in orders">
+    <td> {{order.firstname}}</td>
+    <td> {{order.lastname}}</td>
+    <td> {{order.item}}</td>
+    <td> {{order.quantity}}</td>
+
+    <td>
+      <button  class="button" ng-click="cmaCtrl.removeOrder($index)">remove Order {{$index}}</button>
+
+    </td>
+
+
+  </tr>
+  <tr>
+  <td>
+    <input type="text" ng-model="cmaCtrl.quantity" placeholder="quantity" ><br />
+
+  </td>
+  <td>
+      <input type="text" ng-model="cmaCtrl.item" placeholder="item" ><br />
+  </td>
+
+
+  </tr>
+
+</table>
+<button  class="button" ng-click="cmaCtrl.addRow()">Add Customer {{cmaCtrl.counter}}</button>
+
+<div ui-view></div>
