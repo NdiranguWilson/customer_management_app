@@ -5,6 +5,7 @@
  *
 -->
 <h3>Order Management</h3>
+<p><input type="text" ng-model="test"></p>
 <button ng-click="cmaCtrl.logout()" ng-show="cmaCtrl.isAuthed()">Logout</button>
 <button ng-click="cmaCtrl.views()" > Navigate to customers list</button>
 <table style="width:100%">
@@ -15,7 +16,7 @@
     <th>Quantity</th>
 
   </tr>
-  <tr ng-repeat="order in orders">
+  <tr ng-repeat="order in orders | filter:test">
     <td> {{order.firstname}}</td>
     <td> {{order.lastname}}</td>
     <td> {{order.item}}</td>
