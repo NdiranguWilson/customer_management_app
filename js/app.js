@@ -214,7 +214,7 @@
 
   }
 
-  angular.module('cmaApp', ['clientRouting'])
+  angular.module('cmaApp', ['clientRouting', 'Directive','nameFilter'])
     .factory('authInterceptor', authInterceptor)
     .service('user', userService)
     .service('auth', authService)

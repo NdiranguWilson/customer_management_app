@@ -4,9 +4,11 @@
  * @author Ndirangu Wilson <wndirangu@cytonn.com>
  *
 -->
-<p>Type a letter in the input field:</p>
+<p>filter results by customer name:</p>
 
-<p><input type="text" ng-model="test"></p>
+<p>
+  <input type="text" ng-model="test">
+</p>
 <button ng-click="cmaCtrl.logout()" ng-show="cmaCtrl.isAuthed()">Logout</button>
 <table style="width:100%">
   <tr>
@@ -17,42 +19,44 @@
   <tr ng-repeat="customer in customers | filter:test">
     <td>
       <input type="text" ng-model="customer.name" ng-show="customer.editable">
-               <span ng-hide="customer.editable">{{customer.firstname}}</span>
+      <span ng-hide="customer.editable">{{customer.firstname}}</span>
 
     </td>
     <td>
       <input type="text" ng-model="customer.country" ng-show="customer.editable">
-               <span ng-hide="customer.editable">  {{customer.lastname}}</span>
+      <span ng-hide="customer.editable">  {{customer.lastname}}</span>
 
     </td>
     <td>
       <td>
-          <button  ng-click="cmaCtrl.edit($index)" ng-hide="customer.editable">Edit</button>
-          <button  ng-click="cmaCtrl.save($index)" ng-show="customer.editable">Save</button>
+        <button ng-click="cmaCtrl.edit($index)" ng-hide="customer.editable">Edit</button>
+        <button ng-click="cmaCtrl.save($index)" ng-show="customer.editable">Save</button>
 
-      <button  class="button" ng-click="cmaCtrl.removeCustomer($index)">remove Customer {{$index}}</button>
+        <button class="button" ng-click="cmaCtrl.removeCustomer($index)">remove Customer {{$index}}</button>
 
-    </td>
-    <td>
-      <button  class="button" ng-click="cmaCtrl.viewOrder($index)">Add Order</button>
+      </td>
+      <td>
+        <button class="button" ng-click="cmaCtrl.viewOrder($index)">Add Order</button>
 
-    </td>
+      </td>
 
 
   </tr>
   <tr>
-  <td>
-    <input type="text" ng-model="cmaCtrl.firstname" placeholder="firstame" ><br />
+    <td>
+      <input type="text" ng-model="cmaCtrl.firstname" placeholder="firstame">
+      <br />
 
-  </td>
-  <td>
-      <input type="text" ng-model="cmaCtrl.lastname" placeholder="lastname" ><br />
-  </td>
+    </td>
+    <td>
+      <input type="text" ng-model="cmaCtrl.lastname" placeholder="lastname">
+      <br />
+    </td>
 
 
   </tr>
 
 </table>
-<button  class="button" ng-click="cmaCtrl.addCustomer()">Add Customer {{cmaCtrl.counter}}</button>
+<button class="button" ng-click="cmaCtrl.addCustomer()">Add Customer {{cmaCtrl.counter}}</button>
 
 <div ui-view></div>

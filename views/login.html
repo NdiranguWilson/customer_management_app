@@ -6,17 +6,20 @@
 -->
 <h1> Customer Management App Login</h1>
 
-<input type="text" ng-model="cmaCtrl.username" placeholder="username"><br>
-<input type="password" ng-model="cmaCtrl.password" placeholder="password"><br>
+<input type="text" ng-model="cmaCtrl.username" placeholder="username">
+<br>
+<input type="password" ng-model="cmaCtrl.password" placeholder="password">
+<br>
 <br>
 
 <button ng-click="cmaCtrl.register()" ng-hide="cmaCtrl.isAuthed()">Register</button>
 <button ng-click="cmaCtrl.login()" ng-hide="cmaCtrl.isAuthed()">Login</button>
 <button ng-click="cmaCtrl.logout()" ng-show="cmaCtrl.isAuthed()">Logout</button>
 
-<button ng-click="cmaCtrl.getQuote()">get quote</button>
-<br><br>
-{{cmaCtrl.message}}
+<br>
+<br> {{cmaCtrl.message}}
 
-<br><br><br>
+<br>
+<br>
+<br>
 <div ui-view></div>

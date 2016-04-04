@@ -5,9 +5,12 @@
  *
 -->
 <h3>Order Management</h3>
-<p><input type="text" ng-model="test"></p>
+  <div orders-info></div>
+<p>
+  <input type="text" ng-model="test">
+</p>
 <button ng-click="cmaCtrl.logout()" ng-show="cmaCtrl.isAuthed()">Logout</button>
-<button ng-click="cmaCtrl.views()" > Navigate to customers list</button>
+<button ng-click="cmaCtrl.views()"> Navigate to customers list</button>
 <table style="width:100%">
   <tr>
     <th>Firstname</th>
@@ -23,25 +26,27 @@
     <td> {{order.quantity}}</td>
 
     <td>
-      <button  class="button" ng-click="cmaCtrl.removeOrder($index)">remove Order {{$index}}</button>
+      <button class="button" ng-click="cmaCtrl.removeOrder($index)">remove Order {{$index}}</button>
 
     </td>
 
 
   </tr>
   <tr>
-  <td>
-    <input type="number" ng-model="cmaCtrl.quantity" placeholder="quantity" ><br />
+    <td>
+      <input type="number" ng-model="cmaCtrl.quantity" placeholder="quantity">
+      <br />
 
-  </td>
-  <td>
-      <input type="text" ng-model="cmaCtrl.item" placeholder="item" ><br />
-  </td>
+    </td>
+    <td>
+      <input type="text" ng-model="cmaCtrl.item" placeholder="item">
+      <br />
+    </td>
 
 
   </tr>
 
 </table>
-<button  class="button" ng-click="cmaCtrl.addOrder()">Add order</button>
+<button class="button" ng-click="cmaCtrl.addOrder()">Add order</button>
 
 <div ui-view></div>

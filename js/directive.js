@@ -7,14 +7,10 @@
 
 angular.module('Directive', [])
 .controller('displayControl', ['$scope', function($scope) {
-  $scope.world = {
-    continents: 'Africa,Asia,Europe,America,Actic',
-    location: 'earth',
-    age:'3 billion years'
-  };
+
 }])
-.directive('worldInfo', function() {
+.directive('ordersInfo', function() {
   return {
-    template: '<p><h3>Continents:</h3>  <h4>{{world.continents}}</h4> </hr> <h3>location:<h3> <h4>{{world.location}}</h4> </hr> <h3>Age:</h3> <h4>{{world.age}}</h4></p>'
+    template: '<p> Information about orders<p>'
   };
 });
