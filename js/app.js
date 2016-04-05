@@ -200,7 +200,8 @@
 
       $scope.orders.push(order);
       self.orderCount++;
-
+self.item='';
+self.quantity='';
     }
 
     self.removeOrder = function(index) {

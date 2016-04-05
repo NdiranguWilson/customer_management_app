@@ -7,7 +7,7 @@
 <p>filter results by customer name:</p>
 
 <p>
-  <input type="text" ng-model="test">
+  <input type="text" ng-model="filterCustomer">
 </p>
 <button ng-click="cmaCtrl.logout()" ng-show="cmaCtrl.isAuthed()">Logout</button>
 <table style="width:100%">
@@ -16,7 +16,7 @@
     <th>Lastname</th>
 
   </tr>
-  <tr ng-repeat="customer in customers | filter:test">
+  <tr ng-repeat="customer in customers | filter:filterCustomer">
     <td>
       <input type="text" ng-model="customer.name" ng-show="customer.editable">
       <span ng-hide="customer.editable">{{customer.firstname}}</span>

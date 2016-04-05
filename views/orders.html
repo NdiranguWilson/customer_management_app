@@ -7,7 +7,7 @@
 <h3>Order Management</h3>
   <div orders-info></div>
 <p>
-  <input type="text" ng-model="test">
+  <input type="text" ng-model="filtername">
 </p>
 <button ng-click="cmaCtrl.logout()" ng-show="cmaCtrl.isAuthed()">Logout</button>
 <button ng-click="cmaCtrl.views()"> Navigate to customers list</button>
@@ -15,15 +15,16 @@
   <tr>
     <th>Firstname</th>
     <th>Lastname</th>
-    <th>Item</th>
     <th>Quantity</th>
+    <th>Item</th>
 
   </tr>
-  <tr ng-repeat="order in orders | filter:test">
+  <tr ng-repeat="order in orders | filter:filtername">
     <td> {{order.firstname}}</td>
     <td> {{order.lastname}}</td>
-    <td> {{order.item}}</td>
+
     <td> {{order.quantity}}</td>
+    <td> {{order.item}}</td>
 
     <td>
       <button class="button" ng-click="cmaCtrl.removeOrder($index)">remove Order {{$index}}</button>
@@ -33,6 +34,12 @@
 
   </tr>
   <tr>
+    <td>
+
+    </td>
+    <td>
+
+    </td>
     <td>
       <input type="number" ng-model="cmaCtrl.quantity" placeholder="quantity">
       <br />
